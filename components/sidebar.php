@@ -1,0 +1,1 @@
+<?php if(($user['role']??'')!=='landlord')return;?><aside class="sidebar"><nav aria-label="Khu vực chủ trọ"><?php foreach(['dashboard'=>'Tổng quan','rooms'=>'Phòng đang quản lý','inbox'=>'Yêu cầu thuê','tenants'=>'Người thuê'] as $key=>$label):?><a class="<?=$page===$key?'active':''?>" href="<?=url($key)?>"><?=h($label)?></a><?php endforeach;?></nav></aside>

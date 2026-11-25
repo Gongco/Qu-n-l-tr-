@@ -1,0 +1,3 @@
+.filters select:focus-visible { outline-offset: 2px; }
+.card:focus-visible .card-end b { background: var(--orange); color: white; }
+

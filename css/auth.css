@@ -1,0 +1,4 @@
+.flash { background: #edf4ea; border-radius: 8px; padding: 11px 15px; margin-bottom: 18px; }
+.flash.form-error { background: #fae9df; }
+.account form { margin: 0; }
+

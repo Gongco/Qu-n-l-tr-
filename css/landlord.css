@@ -1,0 +1,7 @@
+.landlord-layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 28px; }
+.sidebar { padding-top: 40px; }
+.sidebar nav { position: sticky; top: 16px; display: grid; gap: 5px; }
+.sidebar a { padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.sidebar a:hover, .sidebar a.active { background: #f7eadc; color: var(--orange); }
+@media(max-width: 800px) { .landlord-layout { display: block; } .sidebar { padding-top: 12px; } .sidebar nav { display: flex; flex-wrap: wrap; } .sidebar a { padding: 6px 9px; } }
+

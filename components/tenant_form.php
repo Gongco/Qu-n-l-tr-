@@ -1,0 +1,7 @@
+<?php if(!defined('ROOT'))exit;
+$id=$page==='tenant_edit'?(int)($_GET['id']??0):0;
+$t=$id?one('SELECT t.* FROM tenants t JOIN rooms r ON r.id=t.room WHERE t.id=? AND r.owner=?',[$id,$user['id']]):[];
+if($page==='tenant_edit'&&!$t){echo '<p class="empty">Không tìm thấy người thuê của bạn.</p>';return;}
+$rooms=sql('SELECT id,title FROM rooms WHERE owner=? AND archived=0 ORDER BY title',[$user['id']])->fetchAll();
+if(!$rooms){echo '<p class="empty">Hãy đăng phòng trước khi thêm người thuê.</p>';return;}?>
+<section class="panel form-panel"><h1><?=$id?'Chỉnh sửa người thuê':'Thêm người thuê'?></h1><form method="post"><?=csrf()?><input type="hidden" name="action" value="tenant_save"><input type="hidden" name="id" value="<?=$id?>"><label>Họ và tên<input name="name" required maxlength="120" value="<?=h($_POST['name']??$t['name']??'')?>"></label><label>Số điện thoại<input name="phone" type="tel" maxlength="24" value="<?=h($_POST['phone']??$t['phone']??'')?>"></label><label>Phòng<select name="room" required><?php foreach($rooms as $r):?><option value="<?=$r['id']?>" <?=$r['id']==($_POST['room']??$t['room']??0)?'selected':''?>><?=h($r['title'])?></option><?php endforeach;?></select></label><label>Ngày bắt đầu thuê<input type="date" name="start_date" required value="<?=h($_POST['start_date']??$t['start_date']??date('Y-m-d'))?>"></label><button class="btn primary">Lưu hồ sơ</button></form></section>
